@@ -2,7 +2,16 @@
   "dataTransformer": {
     "customFileLocation": "customTransforms",
     "methods": [
-      {"function": "test3", "params": {"test3": "test3a"}}
+      {"function": "test3", "params": {"test3": "test3a"}},
+      {"function": "getExtraFields", "params": {}},
+      {"function": "coverImage", "params": {}},
+      {"function": "removeolPrices", "params": {}},
+      {"function": "getMapData", "params": {}},
+      {"function": "getFlightData", "params": {}},
+      {"function": "getBookedBy", "params": {}},
+      {"function": "getIntroMedia", "params": {}},
+      {"function": "getUSPData", "params": {}},
+      {"function": "formatSegment", "params": {}}
     ],
     "startWithEmptyObject": false
   }

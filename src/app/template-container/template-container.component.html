@@ -1,19 +1,59 @@
+<link type="text/css" rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Google+Sans" />
 <div class="page">
   <ng-container *ngTemplateOutlet="templateHeader"></ng-container>
   <div class="page-inner head-paginn">
     <!-- app-hero -->
-    <div>
-      <h1>hai</h1>
+    <div class="heroCover">
+      <img src="{{
+      itinerary.cover[0] !== undefined
+        ? itinerary.cover[0].url
+        : '../../../assets/images/banner/banner.jpg'
+    }}" alt="" class="mb-img" />
+      <div class="hcCon">
+        <h1>{{ itinerary.nameTravelplan }}</h1>
+      </div>
     </div>
   </div>
+  <ng-container *ngTemplateOutlet="templateFooter"></ng-container>
+</div>
+<div class="page">
+  <ng-container *ngTemplateOutlet="templateHeader"></ng-container>
+  <div class="page-inner">
+    <div class="container">
+      <div class="row imgSecBlo">
+        <div class="col-6">
+          <div class="isCon" [innerHTML]="itinerary.intoContent"></div>
+          <h5 class="isConN">{{ itinerary.contactName }}</h5>
+        </div>
+        <div class="col-6">
+          <img src="{{ itinerary.introMedia[0] }}" alt="" class="isImg" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngTemplateOutlet="templateFooter"></ng-container>
 </div>
 <ng-template #templateHeader>
   <header>
     <div class="logo">
       <img src="https://media.nobeach-reizen.nl/original/original/logo-f2825938.png" alt="" title="" />
     </div>
-    <div class="container mb-content">
+    <div class="heDet">
       <h1>{{ itinerary.nameTravelplan }}</h1>
+      <p>30 Oktober 2020 -11 November 2020</p>
     </div>
   </header>
+</ng-template>
+<ng-template #templateFooter>
+  <footer>
+    <ul class="fotInline">
+      <li>NoBeach Reizen</li>
+      <li><img src="https://media.nobeach-reizen.nl/original/original/phone.png" alt=""> +31 (0)88 30 80 300 </li>
+      <li><img src="https://media.nobeach-reizen.nl/original/original/home.png" alt=""> https://www.nobeach-reizen.nl
+      </li>
+      <li><img src="https://media.nobeach-reizen.nl/original/original/phone.png" alt=""> info@nobeach-reizen.nl</li>
+      <li><img src="https://media.nobeach-reizen.nl/original/original/logos.png" alt="" class="fiImg"></li>
+    </ul>
+  </footer>
 </ng-template>

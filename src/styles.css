@@ -92,8 +92,7 @@ app-template-container,
   /* height: 100%; */
   box-sizing: border-box;
   /* overflow: hidden; */
-  padding: 15px;
-  /* padding: 15px 15px 60px; */
+  padding: 115px 40px 15px;
 }
 
 /* .dyPageTtl {
@@ -265,17 +264,13 @@ ol {
 h1,
 h2,
 h3 {
-  font-weight: bold;
-  text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 h2 {
   font-size: 21px;
   font-weight: 300;
-  color: var(--theme-color);
   margin-bottom: 10px;
-  text-transform: uppercase;
 }
 
 h2 span {
@@ -297,7 +292,7 @@ img {
 }
 
 p {
-  font-size: 15px;
+  font-size: 12px;
   color: #555555;
 }
 
@@ -713,7 +708,7 @@ ul.dash-style-list ul li {
 h1 {
   color: #2d2d2c;
   font-size: 1.8em;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .titles {
@@ -1432,102 +1427,73 @@ body .footer p a {
 
 /* header compeent css start here  */
 header {
-  /* background: var(--theme-light); */
-  background: #fff;
-  /* height: 40px; */
-  height: auto;
-  padding: 15px 0 10px 0;
-  /* position: absolute; */
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9;
-  transition: all 0.5s ease-in-out;
+  padding: 30px 40px;
   display: flex;
   vertical-align: middle;
   align-items: center;
+  justify-content: space-between;
 }
 
-header .logo-left,
-header .logo {
-  float: left;
-  width: 33.3%;
-}
-
-header .logo-right {
-  float: right;
-  width: 33.3%;
+header .heDet {
   text-align: right;
 }
 
-header .logo-left p,
-header .logo-right .logo-title {
-  font-family: "Roboto", sans-serif;
-  font-size: 18px;
-  color: #000;
-  font-weight: 600;
-  line-height: 18px;
+header .heDet h1 {
+  font-size: .9em;
 }
 
-header .logo-right .logo-title {
-  font-size: 20px;
-  line-height: 1.3;
-}
-
-header .logo-right span {
-  display: inline-block;
-  width: 100%;
-  font-weight: 500;
-  font-size: 13px;
-  margin: 7px 0 0 0;
+header .heDet p {
+  font-size: .8em;
 }
 
 header .logo {
-  /* padding: 10px 20px; */
   width: 200px;
-  margin: 0 auto;
-  /* background: var(--theme-color); */
-  transition: all 0.5s ease-in-out;
 }
 
-header.small-header {
-  height: 30px;
-  background: var(--theme-color);
+
+.heroCover {
+  position: relative;
 }
 
-header.small-header .logo {
-  width: 120px;
-  padding: 8px 10px;
+.heroCover .hcCon {
+  position: absolute;
+  bottom: 10%;
+  left: 50px;
 }
 
-.taglin-imgc {
-  text-align: center;
-  margin-top: 29px;
+.heroCover .hcCon h1 {
+  font-size: 4em;
+  color: #ffffff;
+  width: 75%;
 }
 
-.taglin-imgc img {
-  height: 50px;
-}
-
-.page-inner.head-paginn {
-  padding: 15px 0;
-}
-
-@media screen and (max-width: 767px) {
-  header {
-    background: none;
-    position: absolute;
-  }
-
-  header .logo {
-    width: 150px;
-    margin: 0;
-  }
+.heroCover img {
+  height: 800px;
+  border-radius: 25px;
 }
 
 /* header compeont css end here  */
+/* second page */
+.imgSecBlo .isCon h2 {
+  font-size: 24px;
+  font-weight: 500;
+}
 
+.imgSecBlo .isConN {
+  margin-top: 50px;
+}
+
+.imgSecBlo .isCon {}
+
+.imgSecBlo .isImg {
+  height: 750px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.imgSecBlo . {}
+
+/* start here */
 /* map info compoent css start here  */
 .map-info .map-info-heading {
   padding: 40px 20px;
@@ -1560,17 +1526,35 @@ header.small-header .logo {
 
 /* footer compeont css start here  */
 footer {
-  background: #eeeeee;
-  padding: 7px 15px;
+  padding: 15px;
   position: absolute;
   width: 100%;
   bottom: 0;
   left: 0;
 }
 
-footer .footerwrap {
+footer .fotInline {
   display: flex;
+  list-style: none;
+  font-size: .6em;
   align-items: center;
+}
+
+footer .fotInline img {
+  height: 13px;
+  vertical-align: middle;
+}
+
+footer .fotInline li {
+  margin: 0 10px;
+}
+
+footer .fotInline li:last-child {
+  margin-left: auto;
+}
+
+footer .fotInline .fiImg {
+  height: 25px;
 }
 
 footer .footer-text-section {
@@ -2760,6 +2744,17 @@ span.ng-star-inserted {
   flex-wrap: wrap;
   /* margin-right: -15px;
   margin-left: -15px; */
+}
+
+.row>[class^="col"] {
+  padding: 0 15px;
+}
+
+.col-6 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+  max-width: 50%;
 }
 
 .col-12 {

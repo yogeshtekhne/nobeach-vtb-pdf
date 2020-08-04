@@ -1,19 +1,210 @@
+<link
+  type="text/css"
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Google+Sans"
+/>
 <div class="page">
   <ng-container *ngTemplateOutlet="templateHeader"></ng-container>
   <div class="page-inner head-paginn">
     <!-- app-hero -->
-    <div>
-      <h1>hai</h1>
+    <div class="heroCover">
+      <img
+        src="{{
+          itinerary.cover[0] !== undefined
+            ? itinerary.cover[0].url
+            : '../../../assets/images/banner/banner.jpg'
+        }}"
+        alt=""
+        class="mb-img"
+      />
+      <div class="hcCon">
+        <h1>{{ itinerary.nameTravelplan }}</h1>
+      </div>
     </div>
   </div>
+  <ng-container *ngTemplateOutlet="templateFooter"></ng-container>
+</div>
+<div class="page">
+  <ng-container *ngTemplateOutlet="templateHeader"></ng-container>
+  <div class="page-inner">
+    <div class="container">
+      <div class="row imgSecBlo">
+        <div class="col-6">
+          <div class="isCon" [innerHTML]="itinerary.intoContent"></div>
+          <h5 class="isConN">{{ itinerary.contactName }}</h5>
+        </div>
+        <div class="col-6">
+          <img src="{{ itinerary.introMedia[0] }}" alt="" class="isImg" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngTemplateOutlet="templateFooter"></ng-container>
+</div>
+<div class="dynamic-pages">
+  <ng-container *ngTemplateOutlet="templateHeader"></ng-container>
+  <div class="page-inner">
+    <h4 class="main-title">Reisbeschrijving</h4>
+    <table class="chartPro">
+      <thead>
+        <tr>
+          <th>Dag</th>
+          <th>Locatie</th>
+          <th>Datum</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Uw transport tot Edinburgh</td>
+          <td>30.10.2020</td>
+        </tr>
+        <tr>
+          <td>1 - 2</td>
+          <td>Cromlix Hotel | Edinburgh</td>
+          <td>30.10.2020 - 31.10.2020</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Uw transport tot Edinburgh</td>
+          <td>30.10.2020</td>
+        </tr>
+        <tr>
+          <td>1 - 2</td>
+          <td>Cromlix Hotel | Edinburgh</td>
+          <td>30.10.2020 - 31.10.2020</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Uw transport tot Edinburgh</td>
+          <td>30.10.2020</td>
+        </tr>
+        <tr>
+          <td>1 - 2</td>
+          <td>Cromlix Hotel | Edinburgh</td>
+          <td>30.10.2020 - 31.10.2020</td>
+        </tr>
+      </tbody>
+    </table>
+    <h4 class="main-title">Reisbeschrijving</h4>
+    <ng-container *ngFor="let segment of itinerary.segments; let i = index">
+      <ng-container *ngIf="segment.typeId == 4 || segment.typeId == 1">
+        <div class="main-timeline">
+          <h6 class="tli-ttl" *ngIf="segment.title">
+            <b>
+              DAG
+              {{ segment.day }}
+              {{
+                segment.nights > 1 ? " - " + (segment.day + segment.nights) : ""
+              }}
+            </b>
+            | {{ segment.title }} | {{ segment.date }}
+          </h6>
+          <ng-container *ngFor="let element of segment.elements">
+            <ng-container *ngIf="element.unitId == 8; else two">
+              <h6 class="tli-sub">
+                {{ element.title }}
+              </h6>
+              <p [innerHTML]="element.additionalText"></p>
+            </ng-container>
+            <ng-template #two>
+              <ng-container
+                *ngIf="element.orderline_highlight == true; else three"
+              >
+                <h6 class="tli-sub">{{ element.title }}</h6>
+              </ng-container>
+            </ng-template>
+            <ng-template #three>
+              <h6 class="tli-sub">
+                {{ element.title + " " + element.subTitle }}
+              </h6>
+              <p [innerHTML]="element.additionalText"></p>
+            </ng-template>
+          </ng-container>
+          <p [innerHTML]="segment.content"></p>
+          <!-- Start image binding element level -->
+          <ng-container *ngIf="segment.images[4] !== undefined; else second">
+            <span class="td-imgs">
+              <img src="{{ segment.images[0] }}" alt="" />
+              <img src="{{ segment.images[1] }}" alt="" />
+            </span>
+            <img class="tdSinImg" src="{{ segment.images[2] }}" alt="" />
+            <span class="td-imgs">
+              <img src="{{ segment.images[3] }}" alt="" />
+              <img src="{{ segment.images[4] }}" alt="" />
+            </span>
+          </ng-container>
+
+          <ng-template #second>
+            <ng-container *ngIf="segment.images[2] !== undefined; else third">
+              <img class="tdSinImg" src="{{ segment.images[0] }}" alt="" />
+              <span class="td-imgs">
+                <img src="{{ segment.images[1] }}" alt="" />
+                <img src="{{ segment.images[2] }}" alt="" />
+              </span>
+            </ng-container>
+          </ng-template>
+
+          <ng-template #third>
+            <ng-container *ngIf="segment.images[0] !== undefined">
+              <img class="tdSinImg" src="{{ segment.images[0] }}" alt="" />
+            </ng-container>
+          </ng-template>
+          <!-- End image binding element level -->
+          <!-- end loop -->
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+  <ng-container *ngTemplateOutlet="templateFooter"></ng-container>
 </div>
 <ng-template #templateHeader>
   <header>
     <div class="logo">
-      <img src="https://media.nobeach-reizen.nl/original/original/logo-f2825938.png" alt="" title="" />
+      <img
+        src="https://media.nobeach-reizen.nl/original/original/logo-f2825938.png"
+        alt=""
+        title=""
+      />
     </div>
-    <div class="container mb-content">
+    <div class="heDet">
       <h1>{{ itinerary.nameTravelplan }}</h1>
+      <p>30 Oktober 2020 -11 November 2020</p>
     </div>
   </header>
+</ng-template>
+<ng-template #templateFooter>
+  <footer>
+    <ul class="fotInline">
+      <li>NoBeach Reizen</li>
+      <li>
+        <img
+          src="https://media.nobeach-reizen.nl/original/original/phone.png"
+          alt=""
+        />
+        +31 (0)88 30 80 300
+      </li>
+      <li>
+        <img
+          src="https://media.nobeach-reizen.nl/original/original/home.png"
+          alt=""
+        />
+        https://www.nobeach-reizen.nl
+      </li>
+      <li>
+        <img
+          src="https://media.nobeach-reizen.nl/original/original/phone.png"
+          alt=""
+        />
+        info@nobeach-reizen.nl
+      </li>
+      <li>
+        <img
+          src="https://media.nobeach-reizen.nl/original/original/logos.png"
+          alt=""
+          class="fiImg"
+        />
+      </li>
+    </ul>
+  </footer>
 </ng-template>

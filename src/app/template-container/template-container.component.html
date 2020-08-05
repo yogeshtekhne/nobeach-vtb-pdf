@@ -158,6 +158,122 @@
   </div>
   <ng-container *ngTemplateOutlet="templateFooter"></ng-container>
 </div>
+<div class="dynamic-pages">
+  <ng-container *ngTemplateOutlet="templateHeader"></ng-container>
+  <div class="page-inner">
+    <div class="bgHigLig">
+      <h4 class="main-title">Wij zijn hier om u kwaliteit te bieden</h4>
+      <div class="wzc-con">
+        <ng-container *ngFor="let usp of itinerary.uspData">
+          <span>
+            <img src="{{ usp.image }}" alt="" />
+            <h4 [innerHTML]="usp.text"></h4>
+          </span>
+        </ng-container>
+      </div>
+    </div>
+    <div class="accopt-con">
+      <h3 class="title acc-ttl">Accommodatie opties</h3>
+      <ng-container *ngFor="let accommodation of itinerary.accommodations">
+        <h4>
+          {{ accommodation.title }}
+          <ng-container *ngIf="accommodation.optional == true">
+            <span class="thetor-opt">Optioneel</span>
+          </ng-container>
+        </h4>
+        <p [innerHTML]="accommodation.additionalText"></p>
+        <ng-container *ngFor="let image of accommodation.media; let i = index">
+          <ng-container *ngIf="i % 2 == 0">
+            <article class="aocImgs">
+              <ng-container *ngIf="accommodation.media[i] !== undefined">
+                <img src="{{ accommodation.media[i].url }}" />
+              </ng-container>
+              <ng-container *ngIf="accommodation.media[i + 1] !== undefined">
+                <img src="{{ accommodation.media[i + 1].url }}" />
+              </ng-container>
+            </article>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+  <ng-container *ngTemplateOutlet="templateFooter"></ng-container>
+</div>
+<div class="dynamic-pages">
+  <ng-container *ngTemplateOutlet="templateHeader"></ng-container>
+  <div class="page-inner">
+    <h4>Reissom & informatie</h4>
+    <div class="pri-perpes">
+      <p>
+        {{ itinerary.nameTravelplan }}
+        <b>{{
+          itinerary.salesPriceBeforeRounding / itinerary.stats_pax
+            | currency: "EUR":"symbol":undefined:"nl"
+        }}</b>
+        per persoon
+      </p>
+      <small>Gebaseerd op {{ itinerary.stats_pax }} personen</small>
+    </div>
+    <ng-container>
+      <h4>Opgenomen in deze reis</h4>
+      <p [innerHTML]="itinerary.TSOrder.texts.general"></p>
+    </ng-container>
+    <h4 class="main-title">Vlucht informatie</h4>
+    <table class="chartPro">
+      <thead>
+        <tr>
+          <th>Vlucht</th>
+          <th>Vlucht nummer.</th>
+          <th>Vertrek luchthaven</th>
+          <th>Vertrek datum</th>
+          <th>Vertrek tijd</th>
+          <th>Aankomst luchthaven</th>
+          <th>Aankomst datum</th>
+          <th>Aankomst tijd</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let flight of itinerary.flights">
+          <td>{{ flight.airlineCode }}</td>
+          <td>{{ flight.flightNumber }}</td>
+          <td>{{ flight.departureAirport }}</td>
+          <td>{{ flight.departureDate }}</td>
+          <td>{{ flight.departureTime }}</td>
+          <td>{{ flight.arrivalAirport }}</td>
+          <td>{{ flight.arrivalDate }}</td>
+          <td>{{ flight.arrivalTime }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <h4 class="main-title">Bijkomende hotel kosten</h4>
+    <ng-container *ngFor="let extra of itinerary.extraFieldValues">
+      <ng-container *ngFor="let field of extra.fields">
+        <ng-container *ngIf="field.name == 'included_text'">
+          <p [innerHTML]="field.value"></p>
+        </ng-container>
+
+        <ng-container *ngIf="field.name == 'excluded_text'">
+          <p [innerHTML]="field.value"></p>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngFor="let segment of itinerary.segments">
+      <ng-container *ngFor="let element of segment.elements">
+        <ng-container *ngIf="element.unitId == 2 && element.optional == true">
+          <h4>{{ element.title }}</h4>
+          <ul>
+            <li *ngFor="let roomType of element.roomTypes">
+              {{ roomType.description }} : €
+              {{ (roomType.defaultPrice / itinerary.stats_pax).toFixed(2) }}/P
+            </li>
+          </ul>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+  <ng-container *ngTemplateOutlet="templateFooter"></ng-container>
+</div>
 <ng-template #templateHeader>
   <header>
     <div class="logo">

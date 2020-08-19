@@ -214,10 +214,8 @@
       </p>
       <small>Gebaseerd op {{ itinerary.stats_pax }} personen</small>
     </div>
-    <ng-container>
-      <h4>Opgenomen in deze reis</h4>
-      <p [innerHTML]="itinerary.TSOrder.texts.general"></p>
-    </ng-container>
+    <h4>Opgenomen in deze reis</h4>
+    <p [innerHTML]="itinerary.TSOrder.texts.general"></p>
     <h4 class="main-title">Vlucht informatie</h4>
     <table class="chartPro">
       <thead>

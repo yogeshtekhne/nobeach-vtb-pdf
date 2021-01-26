@@ -146,7 +146,8 @@ const customTransforms = {
   'getFlightData': (obj, params) => {
 
     let onceTimeExecution = false;
-    let flights = [];
+    let flights = {};
+    let flightDetails  = [];
     obj.dst.segments.forEach((segment) => {
 
       if(segment.typeId == 4 && segment.isFlight) {
@@ -179,7 +180,7 @@ const customTransforms = {
                       arrivalDate: flight.arrivalDate, 
                       arrivalTime: flight.arrivalTime
                     };
-          flights.push(data);
+          flightDetails.push(data);
         });
 
       }
@@ -187,7 +188,9 @@ const customTransforms = {
     });
 
     console.log('flights', flights);
+    console.log('flightDetails', flightDetails);
 
+    obj.dst.flightDetails = flightDetails;
     obj.dst.flights = flights;
     return obj;
   },

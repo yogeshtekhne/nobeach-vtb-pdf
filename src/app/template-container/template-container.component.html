@@ -262,8 +262,8 @@
           <h4>{{ element.title }}</h4>
           <ul>
             <li *ngFor="let roomType of element.roomTypes">
-              {{ roomType.description }} :
-              {{ roomType.defaultPrice / itinerary.stats_pax | currency: "EUR":"symbol":undefined:"nl" }}/P
+              {{ roomType.description }} : €
+              {{ roomType.pricePerPerson ? roomType.pricePerPerson : 0 | currency: "EUR":"symbol":undefined:"nl" }}/P
             </li>
           </ul>
         </ng-container>

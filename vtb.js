@@ -328,6 +328,15 @@ const customTransforms = {
             image.url = image.url.replace('medium', 'large');
             console.log('image.url', image.url);
           });
+
+          if (element.unitId == 2 && element.optional == true) {
+
+            element.roomTypes.forEach((roomType) => {
+              roomType.pricePerPerson = (roomType.defaultPrice/obj.dst.stats_pax).toFixed(2);
+            });
+          }
+
+          
         });
       }
 
